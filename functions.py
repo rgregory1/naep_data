@@ -7,7 +7,9 @@ from datetime import date
 def get_attendance_data():
 
     # read attendance data
-    df_att = pd.read_csv("03_7_PS_Att.csv", dtype=str, parse_dates=["ATTEVENTDATE"])
+    df_att = pd.read_csv(
+        "resources/03_7_PS_Att_fixed.csv", dtype=str, parse_dates=["ATTEVENTDATE"]
+    )
 
     df_att["ENRORGID"].replace("PS115", "FCS", inplace=True)
     df_att["ENRORGID"].replace("PS142", "HES", inplace=True)
@@ -30,7 +32,9 @@ def get_attendance_data():
 
 def get_environmental_data():
     # read in student environmental data
-    df_raw_stats = pd.read_csv("naep_environmental_data.csv", header=None, dtype=str)
+    df_raw_stats = pd.read_csv(
+        "resources/naep_environmental_data.csv", header=None, dtype=str
+    )
     df_raw_stats.rename(
         columns={
             0: "PERMNUMBER",
@@ -60,7 +64,7 @@ def get_environmental_data():
 
 def get_enrollment_data():
     # get enrollment data
-    df_raw_enroll = pd.read_csv("03_4_PS_Enroll.csv", dtype=str)
+    df_raw_enroll = pd.read_csv("resources/03_4_PS_Enroll.csv", dtype=str)
 
     df_raw_enroll["ENRORGID"].replace("PS115", "FCS", inplace=True)
     df_raw_enroll["ENRORGID"].replace("PS142", "HES", inplace=True)
@@ -78,7 +82,7 @@ def get_enrollment_data():
 
 def get_grade_level():
     # read in gradprog
-    df_grades = pd.read_csv("03_5_PS_GradeProg.csv", dtype=str)
+    df_grades = pd.read_csv("resources/03_5_PS_GradeProg.csv", dtype=str)
 
     # drop all non-essential columns from PS_Enroll file
     df_grades = df_grades.iloc[:, [2, 3]].copy()

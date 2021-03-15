@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 import yagmail
+import paramiko
+from paramiko import sftp_client
 
 from datetime import date, datetime, timedelta
 
@@ -11,6 +13,42 @@ import credentials
 gmail_user = credentials.gmail_user
 gmail_password = credentials.gmail_password
 yag = yagmail.SMTP(gmail_user, gmail_password)
+
+
+def grab_files(file_list):
+
+    # Get files from RaspberryPi
+
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(
+        hostname=credentials.pi_host,
+        username=credentials.pi_user,
+        password=credentials.pi_pass,
+        port=22,
+    )
+    sftp_client = ssh.open_sftp()
+
+    files = sftp_client.listdir()
+    print(files)
+
+    for file_name in file_list:
+        sftp_client.get("/public/" + file_name, "resources/" + file_name)
+        print(f"Retrieved {file_name} from remote")
+
+    sftp_client.close()
+    ssh.close()
+
+
+grab_files(
+    [
+        "03_4_PS_Enroll.csv",
+        "03_5_PS_GradeProg.csv",
+        "03_7_PS_Att_fixed.csv",
+        "naep_environmental_data.csv",
+    ]
+)
+
 
 # process attendance data for one month
 att = get_attendance_data()
