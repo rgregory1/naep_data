@@ -144,9 +144,9 @@ def naep_report(school, grade_df, att, email_list):
     )
 
 
-# naep_report("SWA", fourth, att)
+naep_report("SWA", fourth, att, credentials.swa_email)
 naep_report("FCS", fourth, att, credentials.fcs_email)
-# naep_report("MVU", eighth, att)
+naep_report("MVU", eighth, att, credentials.mvu_email)
 
 
 print("done")
