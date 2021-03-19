@@ -231,7 +231,7 @@ def get_environmental_ada(factor_printable_name, factor, school_df, df_att):
         in_person = get_ada_percentage(in_person_att)
 
     else:
-        in_person = "No in person " + factor_printable_name
+        in_person = "No other " + factor_printable_name
 
     # print(factor_printable_name)
     # print("Remote: " + str(remote))
@@ -240,7 +240,7 @@ def get_environmental_ada(factor_printable_name, factor, school_df, df_att):
     return f"""\n {factor_printable_name} \n
     ADA
     Remote: {str(remote)}
-    Hybrid: {str(in_person)}
+    Other: {str(in_person)}
     
     Enrollment
     Total: {len(factor_df)}
@@ -283,7 +283,7 @@ def get_race_ada(factor_printable_name, factor, school_df, df_att):
         in_person = get_ada_percentage(in_person_att)
 
     else:
-        in_person = "No in person " + factor_printable_name
+        in_person = "No other " + factor_printable_name
 
     # print(factor_printable_name)
     # print("Remote: " + str(remote))
@@ -292,7 +292,7 @@ def get_race_ada(factor_printable_name, factor, school_df, df_att):
     return f"""\n {factor_printable_name} \n
     ADA
     Remote: {str(remote)}
-    Hybrid: {str(in_person)}
+    Other: {str(in_person)}
     
     Enrollment
     Total: {len(factor_df)}
@@ -332,7 +332,7 @@ def get_all_student_ada(factor_printable_name, school_df, df_att):
         in_person = get_ada_percentage(in_person_att)
 
     else:
-        in_person = "No in person " + factor_printable_name
+        in_person = "No other " + factor_printable_name
 
     # print(factor_printable_name)
     # print("Remote: " + str(remote))
@@ -341,7 +341,7 @@ def get_all_student_ada(factor_printable_name, school_df, df_att):
     return f"""\n {factor_printable_name} \n
     ADA
     Remote: {str(remote)}
-    Hybrid: {str(in_person)}
+    Other: {str(in_person)}
     
     Enrollment
     Total: {len(school_df)}
